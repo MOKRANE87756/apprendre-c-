@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعلم لغة C++</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.css">
+</head>
+<body>
+    <header>
+        <h1>مرحبًا بك في دورة تعلم لغة C++</h1>
+        <nav>
+            <ul>
+                <li><a href="#introduction">المقدمة</a></li>
+                <li><a href="#basics">الدروس الأساسية</a></li>
+                <li><a href="#examples">أمثلة</a></li>
+                <li><a href="#resources">مصادر إضافية</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="sidebar">
+        <h2>جدول المحتويات</h2>
+        <ul>
+            <li><a href="#introduction">المقدمة</a></li>
+            <li><a href="#lesson1">درس 1: كتابة أول برنامج</a></li>
+            <li><a href="#lesson2">درس 2: المتغيرات والأنواع</a></li>
+            <li><a href="#examples">أمثلة عملية</a></li>
+            <li><a href="#quiz">اختبار سريع</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <section id="introduction">
+            <h2>ما هي لغة C++؟</h2>
+            <p>C++ هي لغة برمجة متعددة الاستخدامات تم تطويرها بواسطة بيورن ستروستروب. تُستخدم لتطوير البرمجيات عالية الأداء مثل الألعاب، أنظمة التشغيل، والتطبيقات العلمية.</p>
+        </section>
+
+        <section id="basics">
+            <h2>الدروس الأساسية</h2>
+
+            <article class="lesson" id="lesson1">
+                <h3>درس 1: كتابة أول برنامج</h3>
+                <textarea id="code1" class="code">
+#include <iostream>
+
+int main() {
+    std::cout << "مرحبًا بالعالم!" << std::endl;
+    return 0;
+}
+                </textarea>
+                <button onclick="runCode('code1')">تشغيل الكود</button>
+                <div id="output1" class="output"></div>
+            </article>
+
+            <article class="lesson" id="lesson2">
+                <h3>درس 2: المتغيرات والأنواع</h3>
+                <textarea id="code2" class="code">
+#include <iostream>
+
+int main() {
+    int number = 10;
+    double pi = 3.14;
+    std::cout << "العدد: " << number << ", PI: " << pi << std::endl;
+    return 0;
+}
+                </textarea>
+                <button onclick="runCode('code2')">تشغيل الكود</button>
+                <div id="output2" class="output"></div>
+            </article>
+        </section>
+
+        <section id="examples">
+            <h2>أمثلة عملية</h2>
+            <article class="example">
+                <h3>مثال: حساب مجموع عددين</h3>
+                <pre><code class="cpp">
+#include <iostream>
+
+int main() {
+    int a = 5, b = 7;
+    int sum = a + b;
+    std::cout << "المجموع: " << sum << std::endl;
+    return 0;
+}
+                </code></pre>
+            </article>
+        </section>
+
+        <section id="quiz">
+            <h2>اختبار سريع</h2>
+            <p>ما هو الناتج عند تشغيل البرنامج التالي؟</p>
+            <pre><code class="cpp">
+#include <iostream>
+
+int main() {
+    int x = 5;
+    int y = 10;
+    std::cout << x + y;
+    return 0;
+}
+            </code></pre>
+            <form id="quizForm">
+                <label>
+                    <input type="radio" name="answer" value="15"> 15
+                </label>
+                <label>
+                    <input type="radio" name="answer" value="510"> 510
+                </label>
+                <button type="button" onclick="checkAnswer()">تحقق</button>
+            </form>
+            <p id="quizResult"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 موقع تعلم C++. جميع الحقوق محفوظة.</p>
+        <button id="backToTop">↑ العودة إلى الأعلى</button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
