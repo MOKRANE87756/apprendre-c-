@@ -54,61 +54,71 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollIndicator.style.width = `${scrollPercentage}%`;
     });
 
-    // Pomodoro Timer
-    let timerInterval;
-    let timeLeft = 25 * 60;
+    // Slideshow
+    const slides = document.querySelectorAll(".slide");
+    let currentSlide = 0;
 
-    function updateTimerDisplay() {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        document.getElementById("timer").textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index);
+        });
     }
 
-    document.getElementById("start-timer").addEventListener("click", () => {
-        if (!timerInterval) {
-            timerInterval = setInterval(() => {
-                if (timeLeft > 0) {
-                    timeLeft--;
-                    updateTimerDisplay();
-                } else {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                }
-            }, 1000);
+    document.getElementById("next-slide").addEventListener("click", () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    });
+
+    document.getElementById("prev-slide").addEventListener("click", () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    });
+
+    showSlide(currentSlide);
+
+    // Quiz
+    function checkAnswer() {
+        const selected = document.querySelector('input[name="answer"]:checked');
+        const resultDiv = document.getElementById("quizResult");
+
+        if (!selected) {
+            resultDiv.textContent = "يرجى اختيار إجابة.";
+            return;
+        }
+
+        if (selected.value === "15") {
+            resultDiv.textContent = "إجابة صحيحة! 👍";
+            resultDiv.style.color = "green";
+            playSound("success");
+        } else {
+            resultDiv.textContent = "إجابة خاطئة. حاول مرة أخرى!";
+            resultDiv.style.color = "red";
+            playSound("fail");
+        }
+    }
+
+    function playSound(type) {
+        const audio = new Audio();
+        audio.src = type === "success" ? "https://www.soundjay.com/button/beep-07.wav" : "https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3";
+        audio.play();
+    }
+
+    // Certificate
+    const certificateModal = document.getElementById("certificate-modal");
+    const openCertificateButton = document.getElementById("get-certificate");
+    const closeCertificateButton = document.querySelector(".close");
+
+    openCertificateButton.addEventListener("click", () => {
+        certificateModal.style.display = "flex";
+    });
+
+    closeCertificateButton.addEventListener("click", () => {
+        certificateModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+        if (event.target === certificateModal) {
+            certificateModal.style.display = "none";
         }
     });
-
-    document.getElementById("pause-timer").addEventListener("click", () => {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    });
-
-    document.getElementById("reset-timer").addEventListener("click", () => {
-        clearInterval(timerInterval);
-        timerInterval = null;
-        timeLeft = 25 * 60;
-        updateTimerDisplay();
-    });
-
-    updateTimerDisplay();
-
-    // لوحة التحكم
-    let completedLessons = 0;
-    const studyTimeElement = document.getElementById("study-time");
-    let studyTime = 0;
-
-    function updateDashboard() {
-        document.getElementById("completed-lessons").textContent = completedLessons;
-        studyTimeElement.textContent = studyTime;
-    }
-
-    document.querySelectorAll(".lesson button").forEach((button) => {
-        button.addEventListener("click", () => {
-            completedLessons++;
-            studyTime += 5; // افتراض أن كل درس يستغرق 5 دقائق
-            updateDashboard();
-        });
-    });
-
-    updateDashboard();
 });
