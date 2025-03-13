@@ -52,4 +52,19 @@ document.addEventListener("DOMContentLoaded", function () {
     menuToggle.addEventListener("click", () => {
         sidebar.classList.toggle("active");
     });
+
+    // Dark Mode
+    const darkModeToggle = document.getElementById("dark-mode-toggle");
+    darkModeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+    });
+
+    // Scroll Indicator
+    const scrollIndicator = document.getElementById("scroll-indicator");
+    window.addEventListener("scroll", () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        scrollIndicator.style.width = `${scrollPercentage}%`;
+    });
 });
