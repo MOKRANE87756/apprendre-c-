@@ -10,6 +10,12 @@ body {
     background-color: #f9f9f9;
     color: #333;
     line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode body {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
 }
 
 .container {
@@ -19,11 +25,12 @@ body {
 }
 
 header {
-    background-color: #0073e6;
+    background: linear-gradient(135deg, #0073e6, #005bb5);
     color: white;
     padding: 20px;
     text-align: center;
     position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
@@ -37,16 +44,27 @@ header h1 i {
     margin-left: 10px;
 }
 
-#menu-toggle {
-    display: none;
+#menu-toggle, #dark-mode-toggle {
     position: absolute;
     top: 20px;
-    left: 20px;
     background: none;
     border: none;
     color: white;
     font-size: 24px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#menu-toggle {
+    left: 20px;
+}
+
+#dark-mode-toggle {
+    right: 20px;
+}
+
+#dark-mode-toggle:hover {
+    transform: scale(1.2);
 }
 
 nav ul {
@@ -63,11 +81,12 @@ nav ul li a {
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 nav ul li a:hover {
     background-color: #005bb5;
+    transform: scale(1.1);
 }
 
 aside#sidebar {
@@ -75,10 +94,10 @@ aside#sidebar {
     top: 80px;
     left: -250px;
     width: 250px;
-    background-color: #fff;
+    background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: left 0.3s ease;
 }
 
@@ -104,19 +123,30 @@ aside#sidebar ul li a {
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+aside#sidebar ul li a:hover {
+    color: #005bb5;
 }
 
 main {
     margin-left: 300px;
     padding: 20px;
+    transition: margin-left 0.3s ease;
 }
 
 .lesson, .example {
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
     padding: 15px;
+    transition: transform 0.3s ease;
+}
+
+.lesson:hover, .example:hover {
+    transform: translateY(-5px);
 }
 
 textarea.code {
@@ -127,20 +157,26 @@ textarea.code {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    transition: border-color 0.3s ease;
+}
+
+textarea.code:focus {
+    border-color: #0073e6;
+    outline: none;
 }
 
 button {
-    background-color: #0073e6;
+    background: linear-gradient(135deg, #0073e6, #005bb5);
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: #005bb5;
+    transform: scale(1.1);
 }
 
 button i {
@@ -152,28 +188,40 @@ button i {
     padding: 10px;
     background-color: #f4f4f4;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #0073e6;
+    background: linear-gradient(135deg, #0073e6, #005bb5);
     color: white;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #backToTop {
     margin-top: 10px;
-    background-color: #0073e6;
+    background: linear-gradient(135deg, #0073e6, #005bb5);
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 #backToTop:hover {
-    background-color: #005bb5;
+    transform: scale(1.1);
+}
+
+#scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #0073e6, #005bb5);
+    z-index: 1000;
+    transition: width 0.3s ease;
 }
 
 @media (max-width: 768px) {
