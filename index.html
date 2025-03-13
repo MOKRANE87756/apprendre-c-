@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تعلم لغة C++</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- CodeMirror -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>مرحبًا بك في دورة تعلم لغة C++</h1>
-        <nav>
+        <div class="container">
+            <h1><i class="fas fa-code"></i> تعلم لغة C++</h1>
+            <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <nav id="main-nav">
             <ul>
                 <li><a href="#introduction">المقدمة</a></li>
                 <li><a href="#basics">الدروس الأساسية</a></li>
@@ -24,15 +33,15 @@
     <aside id="sidebar">
         <h2>جدول المحتويات</h2>
         <ul>
-            <li><a href="#introduction">المقدمة</a></li>
-            <li><a href="#lesson1">درس 1: كتابة أول برنامج</a></li>
-            <li><a href="#lesson2">درس 2: المتغيرات والأنواع</a></li>
-            <li><a href="#examples">أمثلة عملية</a></li>
-            <li><a href="#quiz">اختبار سريع</a></li>
+            <li><a href="#introduction"><i class="fas fa-home"></i> المقدمة</a></li>
+            <li><a href="#lesson1"><i class="fas fa-book"></i> درس 1: كتابة أول برنامج</a></li>
+            <li><a href="#lesson2"><i class="fas fa-book"></i> درس 2: المتغيرات والأنواع</a></li>
+            <li><a href="#examples"><i class="fas fa-code"></i> أمثلة عملية</a></li>
+            <li><a href="#quiz"><i class="fas fa-question-circle"></i> اختبار سريع</a></li>
         </ul>
     </aside>
 
-    <main>
+    <main class="container">
         <section id="introduction">
             <h2>ما هي لغة C++؟</h2>
             <p>C++ هي لغة برمجة متعددة الاستخدامات تم تطويرها بواسطة بيورن ستروستروب. تُستخدم لتطوير البرمجيات عالية الأداء مثل الألعاب، أنظمة التشغيل، والتطبيقات العلمية.</p>
@@ -51,7 +60,7 @@ int main() {
     return 0;
 }
                 </textarea>
-                <button onclick="runCode('code1')">تشغيل الكود</button>
+                <button onclick="runCode('code1')"><i class="fas fa-play"></i> تشغيل الكود</button>
                 <div id="output1" class="output"></div>
             </article>
 
@@ -67,7 +76,7 @@ int main() {
     return 0;
 }
                 </textarea>
-                <button onclick="runCode('code2')">تشغيل الكود</button>
+                <button onclick="runCode('code2')"><i class="fas fa-play"></i> تشغيل الكود</button>
                 <div id="output2" class="output"></div>
             </article>
         </section>
@@ -109,7 +118,7 @@ int main() {
                 <label>
                     <input type="radio" name="answer" value="510"> 510
                 </label>
-                <button type="button" onclick="checkAnswer()">تحقق</button>
+                <button type="button" onclick="checkAnswer()"><i class="fas fa-check"></i> تحقق</button>
             </form>
             <p id="quizResult"></p>
         </section>
@@ -117,7 +126,7 @@ int main() {
 
     <footer>
         <p>&copy; 2023 موقع تعلم C++. جميع الحقوق محفوظة.</p>
-        <button id="backToTop">↑ العودة إلى الأعلى</button>
+        <button id="backToTop"><i class="fas fa-arrow-up"></i> العودة إلى الأعلى</button>
     </footer>
 
     <script src="script.js"></script>
