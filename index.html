@@ -26,7 +26,8 @@
                 <li><a href="#introduction">المقدمة</a></li>
                 <li><a href="#basics">الدروس الأساسية</a></li>
                 <li><a href="#examples">أمثلة</a></li>
-                <li><a href="#resources">مصادر إضافية</a></li>
+                <li><a href="#quiz">اختبارات</a></li>
+                <li><a href="#certificate">الشهادة</a></li>
             </ul>
         </nav>
     </header>
@@ -39,6 +40,7 @@
             <li><a href="#lesson2"><i class="fas fa-book"></i> درس 2: المتغيرات والأنواع</a></li>
             <li><a href="#examples"><i class="fas fa-code"></i> أمثلة عملية</a></li>
             <li><a href="#quiz"><i class="fas fa-question-circle"></i> اختبار سريع</a></li>
+            <li><a href="#certificate"><i class="fas fa-award"></i> الشهادة</a></li>
         </ul>
     </aside>
 
@@ -88,27 +90,75 @@ int main() {
             </article>
         </section>
 
-        <section id="dashboard">
-            <h2>لوحة التحكم</h2>
-            <div class="stats">
-                <div class="stat">
-                    <i class="fas fa-check-circle"></i>
-                    <span>الدروس المكتملة: <strong id="completed-lessons">0</strong>/2</span>
+        <section id="examples">
+            <h2>أمثلة عملية</h2>
+            <div class="slideshow">
+                <div class="slide active">
+                    <h3>مثال 1: حساب مجموع عددين</h3>
+                    <pre><code class="cpp">
+#include <iostream>
+
+int main() {
+    int a = 5, b = 7;
+    int sum = a + b;
+    std::cout << "المجموع: " << sum << std::endl;
+    return 0;
+}
+                    </code></pre>
                 </div>
-                <div class="stat">
-                    <i class="fas fa-clock"></i>
-                    <span>وقت الدراسة اليوم: <strong id="study-time">0</strong> دقيقة</span>
+                <div class="slide">
+                    <h3>مثال 2: طباعة جدول الضرب</h3>
+                    <pre><code class="cpp">
+#include <iostream>
+
+int main() {
+    for (int i = 1; i <= 10; i++) {
+        std::cout << "5 x " << i << " = " << 5 * i << std::endl;
+    }
+    return 0;
+}
+                    </code></pre>
                 </div>
+                <button id="prev-slide"><i class="fas fa-arrow-left"></i></button>
+                <button id="next-slide"><i class="fas fa-arrow-right"></i></button>
             </div>
         </section>
 
-        <section id="pomodoro">
-            <h2>مؤقت الدراسة (Pomodoro)</h2>
-            <div class="timer">
-                <span id="timer">25:00</span>
-                <button id="start-timer"><i class="fas fa-play"></i> بدء</button>
-                <button id="pause-timer"><i class="fas fa-pause"></i> إيقاف</button>
-                <button id="reset-timer"><i class="fas fa-redo"></i> إعادة</button>
+        <section id="quiz">
+            <h2>اختبار سريع</h2>
+            <form id="quizForm">
+                <p>ما هو الناتج عند تشغيل البرنامج التالي؟</p>
+                <pre><code class="cpp">
+#include <iostream>
+
+int main() {
+    int x = 5;
+    int y = 10;
+    std::cout << x + y;
+    return 0;
+}
+                </code></pre>
+                <label>
+                    <input type="radio" name="answer" value="15"> 15
+                </label>
+                <label>
+                    <input type="radio" name="answer" value="510"> 510
+                </label>
+                <button type="button" onclick="checkAnswer()"><i class="fas fa-check"></i> تحقق</button>
+            </form>
+            <p id="quizResult"></p>
+        </section>
+
+        <section id="certificate">
+            <h2>الشهادة</h2>
+            <button id="get-certificate"><i class="fas fa-award"></i> احصل على الشهادة</button>
+            <div id="certificate-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3>تهانينا!</h3>
+                    <p>لقد أكملت جميع الدروس بنجاح.</p>
+                    <img src="https://via.placeholder.com/300x200?text=Certificate" alt="شهادة">
+                </div>
             </div>
         </section>
     </main>
