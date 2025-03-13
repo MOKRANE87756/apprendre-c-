@@ -11,6 +11,8 @@
     <!-- CodeMirror -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.9/codemirror.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -27,7 +29,7 @@
                 <li><a href="#basics">الدروس الأساسية</a></li>
                 <li><a href="#examples">أمثلة</a></li>
                 <li><a href="#quiz">اختبارات</a></li>
-                <li><a href="#certificate">الشهادة</a></li>
+                <li><a href="#dashboard">لوحة التحكم</a></li>
             </ul>
         </nav>
     </header>
@@ -40,7 +42,7 @@
             <li><a href="#lesson2"><i class="fas fa-book"></i> درس 2: المتغيرات والأنواع</a></li>
             <li><a href="#examples"><i class="fas fa-code"></i> أمثلة عملية</a></li>
             <li><a href="#quiz"><i class="fas fa-question-circle"></i> اختبار سريع</a></li>
-            <li><a href="#certificate"><i class="fas fa-award"></i> الشهادة</a></li>
+            <li><a href="#dashboard"><i class="fas fa-chart-bar"></i> لوحة التحكم</a></li>
         </ul>
     </aside>
 
@@ -68,6 +70,14 @@ int main() {
                     <button onclick="downloadCode('code1', 'lesson1.cpp')"><i class="fas fa-download"></i> تحميل الكود</button>
                 </div>
                 <div id="output1" class="output"></div>
+                <div class="rating">
+                    <span>تقييم الدرس:</span>
+                    <i class="fas fa-star" data-rating="1"></i>
+                    <i class="fas fa-star" data-rating="2"></i>
+                    <i class="fas fa-star" data-rating="3"></i>
+                    <i class="fas fa-star" data-rating="4"></i>
+                    <i class="fas fa-star" data-rating="5"></i>
+                </div>
             </article>
 
             <article class="lesson" id="lesson2">
@@ -87,79 +97,20 @@ int main() {
                     <button onclick="downloadCode('code2', 'lesson2.cpp')"><i class="fas fa-download"></i> تحميل الكود</button>
                 </div>
                 <div id="output2" class="output"></div>
+                <div class="rating">
+                    <span>تقييم الدرس:</span>
+                    <i class="fas fa-star" data-rating="1"></i>
+                    <i class="fas fa-star" data-rating="2"></i>
+                    <i class="fas fa-star" data-rating="3"></i>
+                    <i class="fas fa-star" data-rating="4"></i>
+                    <i class="fas fa-star" data-rating="5"></i>
+                </div>
             </article>
         </section>
 
-        <section id="examples">
-            <h2>أمثلة عملية</h2>
-            <div class="slideshow">
-                <div class="slide active">
-                    <h3>مثال 1: حساب مجموع عددين</h3>
-                    <pre><code class="cpp">
-#include <iostream>
-
-int main() {
-    int a = 5, b = 7;
-    int sum = a + b;
-    std::cout << "المجموع: " << sum << std::endl;
-    return 0;
-}
-                    </code></pre>
-                </div>
-                <div class="slide">
-                    <h3>مثال 2: طباعة جدول الضرب</h3>
-                    <pre><code class="cpp">
-#include <iostream>
-
-int main() {
-    for (int i = 1; i <= 10; i++) {
-        std::cout << "5 x " << i << " = " << 5 * i << std::endl;
-    }
-    return 0;
-}
-                    </code></pre>
-                </div>
-                <button id="prev-slide"><i class="fas fa-arrow-left"></i></button>
-                <button id="next-slide"><i class="fas fa-arrow-right"></i></button>
-            </div>
-        </section>
-
-        <section id="quiz">
-            <h2>اختبار سريع</h2>
-            <form id="quizForm">
-                <p>ما هو الناتج عند تشغيل البرنامج التالي؟</p>
-                <pre><code class="cpp">
-#include <iostream>
-
-int main() {
-    int x = 5;
-    int y = 10;
-    std::cout << x + y;
-    return 0;
-}
-                </code></pre>
-                <label>
-                    <input type="radio" name="answer" value="15"> 15
-                </label>
-                <label>
-                    <input type="radio" name="answer" value="510"> 510
-                </label>
-                <button type="button" onclick="checkAnswer()"><i class="fas fa-check"></i> تحقق</button>
-            </form>
-            <p id="quizResult"></p>
-        </section>
-
-        <section id="certificate">
-            <h2>الشهادة</h2>
-            <button id="get-certificate"><i class="fas fa-award"></i> احصل على الشهادة</button>
-            <div id="certificate-modal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h3>تهانينا!</h3>
-                    <p>لقد أكملت جميع الدروس بنجاح.</p>
-                    <img src="https://via.placeholder.com/300x200?text=Certificate" alt="شهادة">
-                </div>
-            </div>
+        <section id="dashboard">
+            <h2>لوحة التحكم</h2>
+            <canvas id="progress-chart" width="400" height="200"></canvas>
         </section>
     </main>
 
