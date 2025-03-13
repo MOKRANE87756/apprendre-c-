@@ -54,71 +54,61 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollIndicator.style.width = `${scrollPercentage}%`;
     });
 
-    // Slideshow
-    const slides = document.querySelectorAll(".slide");
-    let currentSlide = 0;
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle("active", i === index);
+    // Rating System
+    const stars = document.querySelectorAll(".rating i");
+    stars.forEach((star) => {
+        star.addEventListener("click", () => {
+            const rating = star.getAttribute("data-rating");
+            stars.forEach((s, index) => {
+                s.classList.toggle("active", index < rating);
+            });
         });
-    }
-
-    document.getElementById("next-slide").addEventListener("click", () => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
     });
 
-    document.getElementById("prev-slide").addEventListener("click", () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    });
-
-    showSlide(currentSlide);
-
-    // Quiz
-    function checkAnswer() {
-        const selected = document.querySelector('input[name="answer"]:checked');
-        const resultDiv = document.getElementById("quizResult");
-
-        if (!selected) {
-            resultDiv.textContent = "يرجى اختيار إجابة.";
-            return;
+    // Progress Chart
+    const ctx = document.getElementById("progress-chart").getContext("2d");
+    const progressChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["الدرس 1", "الدرس 2", "الدرس 3", "الدرس 4"],
+            datasets: [{
+                label: "التقدم (%)",
+                data: [80, 60, 90, 70],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
         }
-
-        if (selected.value === "15") {
-            resultDiv.textContent = "إجابة صحيحة! 👍";
-            resultDiv.style.color = "green";
-            playSound("success");
-        } else {
-            resultDiv.textContent = "إجابة خاطئة. حاول مرة أخرى!";
-            resultDiv.style.color = "red";
-            playSound("fail");
-        }
-    }
-
-    function playSound(type) {
-        const audio = new Audio();
-        audio.src = type === "success" ? "https://www.soundjay.com/button/beep-07.wav" : "https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3";
-        audio.play();
-    }
-
-    // Certificate
-    const certificateModal = document.getElementById("certificate-modal");
-    const openCertificateButton = document.getElementById("get-certificate");
-    const closeCertificateButton = document.querySelector(".close");
-
-    openCertificateButton.addEventListener("click", () => {
-        certificateModal.style.display = "flex";
     });
 
-    closeCertificateButton.addEventListener("click", () => {
-        certificateModal.style.display = "none";
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
     });
 
-    window.addEventListener("click", (event) => {
-        if (event.target === certificateModal) {
-            certificateModal.style.display = "none";
-        }
+    document.querySelectorAll(".lesson, .section").forEach((el) => {
+        observer.observe(el);
     });
 });
