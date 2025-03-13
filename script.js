@@ -27,31 +27,17 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // التحقق من الإجابة
-    function checkAnswer() {
-        const selected = document.querySelector('input[name="answer"]:checked');
-        const resultDiv = document.getElementById("quizResult");
-
-        if (!selected) {
-            resultDiv.textContent = "يرجى اختيار إجابة.";
-            return;
-        }
-
-        if (selected.value === "15") {
-            resultDiv.textContent = "إجابة صحيحة! 👍";
-            resultDiv.style.color = "green";
-        } else {
-            resultDiv.textContent = "إجابة خاطئة. حاول مرة أخرى!";
-            resultDiv.style.color = "red";
-        }
+    // تحميل الكود
+    function downloadCode(id, fileName) {
+        const code = document.getElementById(id).value;
+        const blob = new Blob([code], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        URL.revokeObjectURL(url);
     }
-
-    // تفعيل الشريط الجانبي
-    const menuToggle = document.getElementById("menu-toggle");
-    const sidebar = document.getElementById("sidebar");
-    menuToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
-    });
 
     // Dark Mode
     const darkModeToggle = document.getElementById("dark-mode-toggle");
@@ -67,4 +53,62 @@ document.addEventListener("DOMContentLoaded", function () {
         const scrollPercentage = (scrollTop / scrollHeight) * 100;
         scrollIndicator.style.width = `${scrollPercentage}%`;
     });
+
+    // Pomodoro Timer
+    let timerInterval;
+    let timeLeft = 25 * 60;
+
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        document.getElementById("timer").textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    document.getElementById("start-timer").addEventListener("click", () => {
+        if (!timerInterval) {
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+            }, 1000);
+        }
+    });
+
+    document.getElementById("pause-timer").addEventListener("click", () => {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    });
+
+    document.getElementById("reset-timer").addEventListener("click", () => {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timeLeft = 25 * 60;
+        updateTimerDisplay();
+    });
+
+    updateTimerDisplay();
+
+    // لوحة التحكم
+    let completedLessons = 0;
+    const studyTimeElement = document.getElementById("study-time");
+    let studyTime = 0;
+
+    function updateDashboard() {
+        document.getElementById("completed-lessons").textContent = completedLessons;
+        studyTimeElement.textContent = studyTime;
+    }
+
+    document.querySelectorAll(".lesson button").forEach((button) => {
+        button.addEventListener("click", () => {
+            completedLessons++;
+            studyTime += 5; // افتراض أن كل درس يستغرق 5 دقائق
+            updateDashboard();
+        });
+    });
+
+    updateDashboard();
 });
