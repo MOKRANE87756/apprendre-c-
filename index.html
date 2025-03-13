@@ -61,7 +61,10 @@ int main() {
     return 0;
 }
                 </textarea>
-                <button onclick="runCode('code1')"><i class="fas fa-play"></i> تشغيل الكود</button>
+                <div class="actions">
+                    <button onclick="runCode('code1')"><i class="fas fa-play"></i> تشغيل الكود</button>
+                    <button onclick="downloadCode('code1', 'lesson1.cpp')"><i class="fas fa-download"></i> تحميل الكود</button>
+                </div>
                 <div id="output1" class="output"></div>
             </article>
 
@@ -77,51 +80,36 @@ int main() {
     return 0;
 }
                 </textarea>
-                <button onclick="runCode('code2')"><i class="fas fa-play"></i> تشغيل الكود</button>
+                <div class="actions">
+                    <button onclick="runCode('code2')"><i class="fas fa-play"></i> تشغيل الكود</button>
+                    <button onclick="downloadCode('code2', 'lesson2.cpp')"><i class="fas fa-download"></i> تحميل الكود</button>
+                </div>
                 <div id="output2" class="output"></div>
             </article>
         </section>
 
-        <section id="examples">
-            <h2>أمثلة عملية</h2>
-            <article class="example">
-                <h3>مثال: حساب مجموع عددين</h3>
-                <pre><code class="cpp">
-#include <iostream>
-
-int main() {
-    int a = 5, b = 7;
-    int sum = a + b;
-    std::cout << "المجموع: " << sum << std::endl;
-    return 0;
-}
-                </code></pre>
-            </article>
+        <section id="dashboard">
+            <h2>لوحة التحكم</h2>
+            <div class="stats">
+                <div class="stat">
+                    <i class="fas fa-check-circle"></i>
+                    <span>الدروس المكتملة: <strong id="completed-lessons">0</strong>/2</span>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-clock"></i>
+                    <span>وقت الدراسة اليوم: <strong id="study-time">0</strong> دقيقة</span>
+                </div>
+            </div>
         </section>
 
-        <section id="quiz">
-            <h2>اختبار سريع</h2>
-            <p>ما هو الناتج عند تشغيل البرنامج التالي؟</p>
-            <pre><code class="cpp">
-#include <iostream>
-
-int main() {
-    int x = 5;
-    int y = 10;
-    std::cout << x + y;
-    return 0;
-}
-            </code></pre>
-            <form id="quizForm">
-                <label>
-                    <input type="radio" name="answer" value="15"> 15
-                </label>
-                <label>
-                    <input type="radio" name="answer" value="510"> 510
-                </label>
-                <button type="button" onclick="checkAnswer()"><i class="fas fa-check"></i> تحقق</button>
-            </form>
-            <p id="quizResult"></p>
+        <section id="pomodoro">
+            <h2>مؤقت الدراسة (Pomodoro)</h2>
+            <div class="timer">
+                <span id="timer">25:00</span>
+                <button id="start-timer"><i class="fas fa-play"></i> بدء</button>
+                <button id="pause-timer"><i class="fas fa-pause"></i> إيقاف</button>
+                <button id="reset-timer"><i class="fas fa-redo"></i> إعادة</button>
+            </div>
         </section>
     </main>
 
@@ -130,7 +118,6 @@ int main() {
         <button id="backToTop"><i class="fas fa-arrow-up"></i> العودة إلى الأعلى</button>
     </footer>
 
-    <!-- Scroll Indicator -->
     <div id="scroll-indicator"></div>
 
     <script src="script.js"></script>
