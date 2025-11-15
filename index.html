@@ -1,11 +1,138 @@
-🎁 عرض مجاني من HM Marketing!
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تسجيل الدخول — منصة EMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f0f3fa; --card:#ffffff; --primary:#1c4b82; --accent:#2d73d2; --muted:#6b7280;
+    }
+    body{margin:0; font-family:'Cairo',sans-serif; background:var(--bg);}
+    .container{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px}
+    .card{width:100%; max-width:960px; background:var(--card); border-radius:18px; box-shadow:0 10px 40px rgba(0,0,0,0.08); display:grid; grid-template-columns:1fr 420px; overflow:hidden}
+    @media(max-width:900px){.card{grid-template-columns:1fr}}
 
-✔️ تصميم منشور احترافي لك مجانًا  
-✔️ تحليل صفحتك التسويقية  
-✔️ خطة تسويق لمدة أسبوع  
+    /* LEFT */
+    .left{padding:40px}
+    .brand{display:flex; gap:16px; align-items:center; margin-bottom:20px}
+    .logo{
+      width:72px;height:72px; border-radius:12px; background:white; box-shadow:0 4px 10px rgba(0,0,0,0.06);
+      display:flex;align-items:center;justify-content:center
+    }
+    .logo svg{width:48px; height:48px;}
+    h1{margin:0 0 12px; font-size:26px; color:var(--primary)}
+    p{color:var(--muted); margin:0 0 20px}
 
-📌 لأول 3 عملاء فقط!
+    .features{display:grid; gap:14px; margin-top:20px}
+    .feature{display:flex; gap:12px}
+    .ficon{width:46px;height:46px;background:#eaf0fb;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:700}
+    .footer{text-align:center; margin-top:30px; font-size:13px; color:var(--muted)}
 
-📩 تواصل معنا:
-📧 hm.marketing.official1@gmail.com  
-📱 عبر WhatsApp: 213XXXXXXXXX
+    /* RIGHT */
+    .aside{padding:40px; background:#f9fbff; border-left:1px solid #e5e9f0}
+    .aside h2{margin:0 0 6px; color:var(--primary)}
+    small{color:var(--muted)}
+    form{margin-top:20px; display:flex; flex-direction:column; gap:14px}
+    label{font-size:14px; color:var(--muted)}
+    input{width:100%; padding:12px; border-radius:10px; border:1px solid #dde3ec; background:white}
+    .btn{padding:12px; background:var(--primary); border:0; border-radius:10px; color:white; cursor:pointer; font-size:15px}
+    .ghost{padding:11px; border-radius:10px; border:1px solid var(--primary); background:transparent; color:var(--primary); cursor:pointer}
+    .row{display:flex; justify-content:space-between; align-items:center; font-size:13px}
+    a{color:var(--accent); text-decoration:none}
+
+    .help{display:flex; justify-content:space-between; font-size:13px; margin-top:8px; color:var(--muted)}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+
+    <div class="left">
+      <div class="brand">
+        <div class="logo">
+          <!-- شعار مخصص SVG (حر) -->
+          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" stroke="#1c4b82" stroke-width="4" fill="none"/><path d="M20 38 L32 18 L44 38 Z" fill="#1c4b82"/></svg>
+        </div>
+        <div>
+          <h3 style="margin:0; font-weight:700">الفدرالية الجزائرية لكرة القدم</h3>
+          <div style="font-size:13px; color:var(--muted)">منصة EMS — ورقة المباراة الإلكترونية</div>
+        </div>
+      </div>
+
+      <h1>أهلاً بك في منصة EMS</h1>
+      <p>قم بتسجيل الدخول باستخدام حساب FAF Connect للوصول إلى أدوات إدارة المباريات.</p>
+
+      <div class="features">
+        <div class="feature"><div class="ficon">1</div> <div><strong>إدارة المباريات</strong><br><span style="color:var(--muted)">اللاعبين – الطاقم – الحكام</span></div></div>
+        <div class="feature"><div class="ficon">2</div> <div><strong>تقارير فورية</strong><br><span style="color:var(--muted)">حفظ تلقائي + تصدير PDF</span></div></div>
+        <div class="feature"><div class="ficon">3</div> <div><strong>حماية متقدمة</strong><br><span style="color:var(--muted)">مصادقة + صلاحيات</span></div></div>
+      </div>
+
+      <div class="footer">جميع الحقوق محفوظة © 2025</div>
+    </div>
+
+    <div class="aside">
+      <h2>تسجيل الدخول</h2>
+      <small>أدخل بيانات حسابك للمتابعة</small>
+
+      <form id="loginForm" onsubmit="return login(event)">
+        <div>
+          <label>اسم المستخدم</label>
+          <input id="username" type="text" required placeholder="club123">
+        </div>
+        <div>
+          <label>كلمة المرور</label>
+          <input id="password" type="password" required placeholder="••••••••">
+        </div>
+        <button class="btn" type="submit">تسجيل الدخول</button>
+        <button class="ghost" type="button" onclick="demo()">تجريبي</button>
+      </form>
+
+      <div class="help">
+        <div><a href="#">نسيت كلمة المرور؟</a></div>
+        <div>إصدار: 2025</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+async function login(e){
+  e.preventDefault();
+  const u = document.getElementById('username').value.trim();
+  const p = document.getElementById('password').value.trim();
+
+  if(!u || !p){ alert('الرجاء ملء جميع الحقول'); return false }
+
+  try{
+    const res = await fetch('https://your-server.com/api/login',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({username:u, password:p})
+    });
+
+    const data = await res.json();
+
+    if(res.ok){
+      alert('تم تسجيل الدخول بنجاح');
+      // مثل: window.location = '/dashboard';
+    } else {
+      alert(data.message || 'بيانات غير صحيحة');
+    }
+  } catch(err){
+    alert('خطأ في الاتصال بالسيرفر');
+  }
+}
+
+function demo(){
+  document.getElementById('username').value='demo_club';
+  document.getElementById('password').value='demo1234';
+}
+</script>
+</body>
+</html>
